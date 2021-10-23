@@ -8,6 +8,21 @@ version: 2.1
 # See: https://circleci.com/docs/2.0/orb-intro/
 orbs:
   android: circleci/android@1.0.3
+  orbs:
+  docker: circleci/docker@1.7.0
+  jobs:
+  example-job:
+    docker:
+      # replace with your preferred image
+      - image: cimg/base:stable
+    steps:
+      - docker/install-docker-credential-helper:
+          release-tag: pi 
+
+workflows:
+  example-workflow:
+    jobs:
+      - example-job
 
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
